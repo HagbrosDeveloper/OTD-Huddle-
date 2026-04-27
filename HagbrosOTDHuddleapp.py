@@ -1,20 +1,3 @@
-Viewed app.py:1-234
-
-Ah! I know exactly why it is showing a completely blank white screen. Your `HagbrosOTDHuddleapp.py` file on GitHub is completely empty! 
-
-When we were going through the steps, we created the `requirements.txt` file, but we forgot to actually paste the Python code into the app file itself. 
-
-It is a super easy fix. Just follow these steps:
-1. Go back to your **GitHub repository** tab and click on your `HagbrosOTDHuddleapp.py` file.
-2. Click the little **pencil icon** ✏️ in the top right corner of the file box to edit it.
-3. **Copy the entire code block below** and paste it into that empty GitHub file.
-4. Click the green **Commit changes** button.
-
-As soon as you commit the changes on GitHub, Streamlit will automatically detect the new code, rebuild itself, and that blank white screen will instantly turn into your dashboard! You don't even have to redeploy it.
-
-Here is the exact code to copy:
-
-```python
 import streamlit as st
 import pandas as pd
 import streamlit.components.v1 as components
@@ -248,4 +231,3 @@ else:
     # Placeholder for other tabs
     st.info(f"🚧 The **{selected_tab}** tab is currently under development.")
     st.write("Please select 'Stalled Jobs' from the sidebar to view active features.")
-```
