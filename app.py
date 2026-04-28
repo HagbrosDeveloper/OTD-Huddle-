@@ -43,10 +43,25 @@ st.session_state.setdefault('logged_in', False)
 st.session_state.setdefault('user_name', 'Hagbros User')
 st.session_state.setdefault('user_email', 'user@hagbros.com')
 
-if HAS_AUTH_LIB and 'google_auth' in st.secrets:
+if HAS_AUTH_LIB and 'google_oauth' in st.secrets:
     try:
+        import json
+        oauth_data = {
+            "web": {
+                "client_id": st.secrets["google_oauth"]["client_id"],
+                "project_id": "hagbros-otd-huddle",
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_secret": st.secrets["google_oauth"]["client_secret"],
+                "redirect_uris": ["https://hagbros-otd.streamlit.app"]
+            }
+        }
+        with open('google_credentials.json', 'w') as f:
+            json.dump(oauth_data, f)
+            
         authenticator = Authenticate(
-            secret_credentials_path='google_credentials.json', # Placeholder path
+            secret_credentials_path='google_credentials.json', 
             cookie_name='hagbros_cookie',
             cookie_key='this_is_secret',
             redirect_uri='https://hagbros-otd.streamlit.app',
